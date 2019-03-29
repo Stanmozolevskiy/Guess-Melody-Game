@@ -47,7 +47,6 @@ window.onload = function () {
         underScores = [];
         // Generating the secretWord from array.
         secretWord = random.singer
-        const audio = new Audio(random.audio);
 
         //pushing underscores.
         for (i = 0; i < secretWord.length; i++) {
@@ -65,15 +64,18 @@ window.onload = function () {
         document.getElementById("wins").innerHTML = "Wins: " + wins;
         document.getElementById("losses").innerHTML = "Losses: " + losses;
 
-        // audio asink function
-        function wait(ms) {
-            return new Promise(r => setTimeout(r, ms));
-        }
-        async function playSong() {
-            await wait(900);
+        const audio = new Audio(random.audio);
+        //  Call back function for audio file to render before it will start playing
+        function songCallback() {
             return audio.play()
         }
-        playSong()
+        function playSong(song, callback) {
+            setTimeout(() => {
+                song = new Audio(song);
+                callback()
+            }, 100);
+        }
+        playSong(random.audio, songCallback)
 
         document.onkeyup = function (event) {
             // make sure key is a letter by setting key index
@@ -85,37 +87,33 @@ window.onload = function () {
             }
         }
     }
-
+    
     function compare(letter, audio) {
         if (wrongGuess.indexOf(letter) > -1) {
             return;
-        }
-
+        }      
         // check for matching letter 
         var guessedLetter = false;
-
+        
         for (var i = 0; i < secretWord.length; i++) {
             if (secretWord[i] == letter) {
                 guessedLetter = true;
                 underScores[i] = letter;
             }
-        }
-
+        } 
         // location of the letter
         if (!guessedLetter) {
             wrongGuess.push(letter);
             lives--;
         }
         count(audio);
-    }
-
+    }  
     // this function does count wins and losses
     function count(audio) {
-        
+              
         document.getElementById("livesLeft").innerHTML = "Attempts: " + " " + lives;
         document.getElementById("underScores").innerHTML = underScores.join(" ");
         document.getElementById("wrongGuess").innerHTML = "Guessed Wrong: " + " " + wrongGuess.join(" ");
-
 
         if (secretWord == underScores.join("")) {
             audio.pause()
@@ -133,8 +131,6 @@ window.onload = function () {
         }
 
     }
-
     newGame();
-
 
 }
