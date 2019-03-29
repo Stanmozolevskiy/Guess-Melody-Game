@@ -73,7 +73,7 @@ window.onload = function () {
             setTimeout(() => {
                 song = new Audio(song);
                 callback()
-            }, 100);
+            }, 1000);
         }
         playSong(random.audio, songCallback)
 
