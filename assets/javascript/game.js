@@ -70,7 +70,7 @@ window.onload = function () {
             return new Promise(r => setTimeout(r, ms));
         }
         async function playSong() {
-            await wait(500);
+            await wait(900);
             return audio.play()
         }
         playSong()
