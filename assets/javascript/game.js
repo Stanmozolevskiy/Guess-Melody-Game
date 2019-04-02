@@ -65,11 +65,10 @@ window.onload = function () {
         document.getElementById("losses").innerHTML = "Losses: " + losses;
 
 //        audio promise function
-    let audio;
         function playSong(audioStream) {
             if (audioStream) {
                console.log(`Audio is playing`, audioStream)
-               audio.play()
+               audioStream.play()
             }
          }
          
