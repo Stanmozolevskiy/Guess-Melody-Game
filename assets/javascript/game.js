@@ -65,7 +65,7 @@ window.onload = function () {
         document.getElementById("losses").innerHTML = "Losses: " + losses;
 
 //        audio promise function
-        const audio = new Audio(random.audio);
+    let audio;
         function playSong(audioStream) {
             if (audioStream) {
                console.log(`Audio is playing`, audioStream)
