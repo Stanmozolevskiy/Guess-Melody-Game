@@ -64,19 +64,8 @@ window.onload = function () {
         document.getElementById("wins").innerHTML = "Wins: " + wins;
         document.getElementById("losses").innerHTML = "Losses: " + losses;
 
+//        audio promise function
         const audio = new Audio(random.audio);
-        // //  Call back function for audio file to render before it will start playing
-        // function songCallback() {
-        //     return audio.play()
-        // }
-        // function playSong(song, callback) {
-        //     setTimeout(() => {
-        //         song = new Audio(song);
-        //         callback()
-        //     }, 1000)
-        // }
-        // playSong(random.audio, songCallback)
-
         function playSong(audioStream) {
             if (audioStream) {
                console.log(`Audio is playing`, audioStream)
@@ -101,8 +90,7 @@ window.onload = function () {
          }
          
          getSong(random.audio).then(audioInstance => playSong(audioInstance))
-
-
+      
         document.onkeyup = function (event) {
             // make sure key is a letter by setting key index
             if (event.keyCode >= 65 && event.keyCode <= 90) {
