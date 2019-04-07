@@ -1,31 +1,56 @@
-
 const app = [
     music = {
         singer: "madona",
         imageSrc: "",
         audio: "assets/music/madonna.m4a",
+        image: "assets/images/madona.jpg",
         year: ""
     },
     music = {
         singer: "acdc",
         imageSrc: "",
         audio: "assets/music/acdc.m4a",
+        image: "assets/images/acdc.jpg",
         year: ""
     },
     music = {
         singer: "nirvana",
         imageSrc: "",
         audio: "assets/music/nirvana.m4a",
+        image: "assets/images/nirvana.jpg",
         year: ""
     },
     music = {
         singer: "drake",
         imageSrc: "",
         audio: "assets/music/drake.m4a",
+        image: "assets/images/drake.jpg",
+        year: ""
+    },
+    music = {
+        singer: "beatles",
+        imageSrc: "",
+        audio: "assets/music/beatles.m4a",
+        image: "assets/images/beatles.jpg",
+        year: ""
+    },
+    music = {
+        singer: "emenem",
+        imageSrc: "",
+        audio: "assets/music/emenem.m4a",
+        image: "assets/images/emenem.jpg",
+        year: ""
+    },
+    music = {
+        singer: "snoopdog",
+        imageSrc: "",
+        audio: "assets/music/snoop.m4a",
+        image: "assets/images/snoop.jif",
         year: ""
     }
 ]
 
+console.log(app)
 // make variables for our wins losses = set to 0.
 var wins = 0;
 var losses = 0;
@@ -42,7 +67,7 @@ window.onload = function () {
 
         // Set new game's stats
         random = app[Math.floor(Math.random() * app.length)];
-        lives = 12;
+        lives = 5;
         wrongGuess = [];
         underScores = [];
         // Generating the secretWord from array.
@@ -64,18 +89,11 @@ window.onload = function () {
         document.getElementById("wins").innerHTML = "Wins: " + wins;
         document.getElementById("losses").innerHTML = "Losses: " + losses;
 
-        const audio = new Audio(random.audio);
-        //  Call back function for audio file to render before it will start playing
-        function songCallback() {
-            return audio.play()
-        }
-        function playSong(song, callback) {
-            setTimeout(() => {
-                song = new Audio(song);
-                callback()
-            }, 1000);
-        }
-        playSong(random.audio, songCallback)
+        // Play the song.
+        let audioUi = document.getElementById("audio-ui");
+        audioUi.src = random.audio
+        // Show the image
+        document.getElementById("singer-image").src = random.image
 
         document.onkeyup = function (event) {
             // make sure key is a letter by setting key index
@@ -83,40 +101,41 @@ window.onload = function () {
                 // put the pressed key into letterGuess
                 var letterGuess = String.fromCharCode(event.keyCode).toLowerCase();
                 // send the letter to the compare loop
-                compare(letterGuess, audio);
+                compare(letterGuess);
             }
         }
     }
-    
-    function compare(letter, audio) {
+
+    function compare(letter) {
         if (wrongGuess.indexOf(letter) > -1) {
             return;
-        }      
+        }
         // check for matching letter 
         var guessedLetter = false;
-        
+
         for (var i = 0; i < secretWord.length; i++) {
             if (secretWord[i] == letter) {
                 guessedLetter = true;
                 underScores[i] = letter;
             }
-        } 
+        }
         // location of the letter
         if (!guessedLetter) {
             wrongGuess.push(letter);
             lives--;
         }
-        count(audio);
-    }  
+        count();
+    }
     // this function does count wins and losses
-    function count(audio) {
-              
+    function count() {
+
         document.getElementById("livesLeft").innerHTML = "Attempts: " + " " + lives;
         document.getElementById("underScores").innerHTML = underScores.join(" ");
         document.getElementById("wrongGuess").innerHTML = "Guessed Wrong: " + " " + wrongGuess.join(" ");
+        
 
         if (secretWord == underScores.join("")) {
-            audio.pause()
+            
             wins++;
             // alert("Good job it is" + " " + secretWord);
             document.getElementById("wins").innerHTML = "wins: " + " " + wins;

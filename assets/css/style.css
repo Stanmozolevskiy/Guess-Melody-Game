@@ -1,0 +1,20 @@
+body{
+    background-color: #4aaaa5
+}
+font-family: Arial, Helvetica, sans-serif;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.center {
+    text-align: center;
+  }
+#singer-image{
+    width: 200px;
+    height: 200px;
+}
