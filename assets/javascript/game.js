@@ -31,7 +31,7 @@ const app = [
         singer: "beatles",
         imageSrc: "",
         audio: "assets/music/beatles.m4a",
-        image: "assets/images/beatles.jpg",
+        image: "assets/images/Beatles.jpg",
         year: ""
     },
     music = {
