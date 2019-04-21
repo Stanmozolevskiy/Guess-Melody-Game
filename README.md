@@ -5,5 +5,5 @@
 
 You can guess the singer/ band name by looking at the old picture or by listaning short part of the soundtrack.
 
-Guess-song-game.PNG
+ ![Guess-song-game](Guess-song-game.PNG) 
 
